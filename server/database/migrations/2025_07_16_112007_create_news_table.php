@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('thumbnail_url');
             $table->string('title');
             $table->text('content');
+            $table->string('image_url')->nullable();
             $table->foreignUuid('category_id')
                   ->constrained('categories')
                   ->onDelete('cascade');
