@@ -9,27 +9,37 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
+    private const DEFAULT_PER_PAGE = 5;
     /**
+     * Get a paginated list of news items.
+     *
+     * Query Parameters:
+     * - categories: array, filter news by category IDs.
+     * - search: string, filter news by title.
+     * - per_page: int, number of items per page (default: 5).
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index(Request $request)
     {
         $query = News::query();
 
-        $query->with('category');
+        $query->with('categories');
 
-        $query->when($request->category_id, function ($q, $categoryId) {
-            return $q->where('category_id', $categoryId);
+        $query->when($request->categories, function ($q, $category_ids) {
+            $category_ids = is_array($category_ids) ? $category_ids : [$category_ids];
+
+            return $q->whereHas('categories', function ($category_query) use ($category_ids) {
+                $category_query->whereIn('id', $category_ids);
+            }, '=', count($category_ids));
         });
 
-        $query->when($request->search, function ($que, $searchTerm) {
-            return $que->where(function ($q) use ($searchTerm) {
-                $q->where('title', 'like', "%{$searchTerm}%")
-                      ->orWhere('content', 'like', "%{$searchTerm}%");
-            });
+        $query->when($request->search, function ($q, $searchTerm) {
+            return $q->where('title', 'like', "%{$searchTerm}%");
         });
 
-        $news = $query->withQueryString()->paginate(10);
+        $perPage = $request->input('per_page', self::DEFAULT_PER_PAGE);
+        $news = $query->paginate($perPage);
 
         return NewsResource::collection($news);
     }
@@ -48,7 +58,7 @@ class NewsController extends Controller
      */
     public function show(News $news)
     {
-        $news->load('category');
+        $news->load('categories');
 
         return new NewsResource($news);
     }
