@@ -3,7 +3,6 @@ import PaginationArrow from "./PaginationArrow"
 import PaginationNumber from "./PaginationNumber"
 
 
-
 interface PaginationProps {
     totalPages: number
     currPage: number

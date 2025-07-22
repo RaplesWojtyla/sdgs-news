@@ -104,6 +104,7 @@ const NewsPage = () => {
 									news.map(newsItem => (
 										<NewsCard
 											key={newsItem.id}
+											id={newsItem.id}
 											thumbnailUrl={newsItem.thumbnail_url}
 											title={newsItem.title}
 											content={newsItem.content}

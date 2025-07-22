@@ -10,7 +10,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export const generatePagination = (totalPages: number, currPage: number) => {
 	if (totalPages <= 7) {
-		return Array.from({ length: 7 }, (_, i) => i + 1)
+		return Array.from({ length: totalPages }, (_, i) => i + 1)
 	}
 
 	if (currPage < 5) {

@@ -17,13 +17,12 @@ class NewsResource extends JsonResource
         return [
             'id' => $this->id,
             'thumbnail_url' => $this->thumbnail_url,
+            'author' => $this->author,
             'title' => $this->title,
             'content' => $this->content,
             'image_url' => $this->image_url,
-            
             'categories' => CategoryResource::collection($this->whenLoaded('categories')),
-
-            'created_at' => $this->created_at->format('d M Y'),
+            'created_at' => $this->created_at,
         ];
     }
 }

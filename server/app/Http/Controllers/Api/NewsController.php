@@ -53,12 +53,14 @@ class NewsController extends Controller
     }
 
     /**
-     * @param  \App\Models\News  $news
+     * Display the specified resource.
+     *
+     * @param  string  $id
      * @return \App\Http\Resources\NewsResource
      */
-    public function show(News $news)
+    public function show(string $id)
     {
-        $news->load('categories');
+        $news = News::with('categories')->findOrFail($id);
 
         return new NewsResource($news);
     }
