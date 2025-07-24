@@ -28,7 +28,7 @@ Proyek ini dibangun menggunakan teknologi modern berikut:
 -   **Build Tool**: Vite
 -   **Styling**: Tailwind CSS
 -   **Komponen UI**: shadcn/ui (Radix UI)
--   **Manajemen Paket**: npm/pnpm/yarn
+-   **Manajemen Paket**: pnpm
 
 ---
 
