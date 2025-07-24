@@ -3,9 +3,10 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { SERVER_URL } from "@/lib/utils";
 import type { News } from "@/lib/types";
-import NewsCard from "@/components/NewsCard";
 import DetailNewsHeader from "@/components/DetailNewsHeader";
 import DetailNewsSkeleton from "@/components/skeletons/DetailNewsSkeleton";
+import SocialShare from "@/components/SocialShare";
+import { Badge } from "@/components/ui/badge";
 
 const DetailNewsPage = () => {
 	const { id } = useParams<{ id: string }>();
@@ -15,7 +16,7 @@ const DetailNewsPage = () => {
 
 	const fetchNewsDetail = useCallback(async () => {
 		if (!id) return;
-		
+
 		setIsLoading(true);
 		try {
 			const detailRes = await axios.get(`${SERVER_URL}/api/news/${id}`);
@@ -30,6 +31,7 @@ const DetailNewsPage = () => {
 		} catch (error) {
 			console.error(`[fetchNewsDetail] Error: ${error}`);
 			setNews(null);
+			setRelatedNews([]);
 		} finally {
 			setIsLoading(false);
 		}
@@ -69,7 +71,7 @@ const DetailNewsPage = () => {
 	}
 
 	return (
-		<main className="bg-gray-50 min-h-screen">
+		<main className="min-h-screen">
 			<DetailNewsHeader
 				title={news.title}
 				author={news.author}
@@ -80,26 +82,51 @@ const DetailNewsPage = () => {
 
 			<div className="container mx-auto pb-12">
 				<div className="max-w-4xl mx-auto">
-					<article className="p-6 md:p-8 mb-12">
-						<div
-							className="prose lg:prose-lg max-w-none text-gray-800"
-							dangerouslySetInnerHTML={{ __html: news.content }}
-						/>
-					</article>
+					<div className="flex justify-center md:hidden mb-12">
+						<SocialShare />
+					</div>
+					<div className="flex gap-0 md:mx-14">
+						<div className="hidden md:block md:p-8 md:mt-10">
+							<SocialShare />
+						</div>
+						<div className="flex-1">
+							<article className="p-6 md:p-8 mb-12">
+								<div
+									className="prose lg:prose-lg max-w-none text-gray-800"
+									dangerouslySetInnerHTML={{ __html: news.content }}
+								/>
+
+								<div className="mt-10 space-x-4 space-y-4">
+									{news.categories.map(category => (
+										<Badge
+											key={category.id}
+											className="py-2 text-primary rounded-sm"
+											variant={'secondary'}
+										>
+											{category.code} {category.name}
+										</Badge>
+									))}
+								</div>
+							</article>
+
+						</div>
+
+					</div>
 
 					<div>
-						<h3 className="text-2xl font-bold mb-4">Berita Terkait</h3>
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+						<h3 className="font-semibold mb-6 text-center text-gray-500 text-sm">Find Other News</h3>
+						<div className="grid grid-rows-3 md:grid-cols-3 gap-14 md:gap-8">
 							{relatedNews.map((relatedItem) => (
-								<NewsCard
-									key={relatedItem.id}
-                                    id={relatedItem.id}
-									thumbnailUrl={relatedItem.thumbnail_url}
-									title={relatedItem.title}
-									shortDescription={relatedItem.short_description}
-									categories={relatedItem.categories}
-									createdAt={relatedItem.created_at}
-								/>
+								<Link to={`/news/${relatedItem.id}`}>
+									<div className="text-gray-500 mx-8">
+										<p className="text-xs mb-2">
+											Internasional
+										</p>
+										<p className="md:line-clamp-5 lg:line-clamp-6">
+											{relatedItem.title + "asfnaljnfa awefawef awufehawefhuw aw fwaufa hwfawf"}
+										</p>
+									</div>
+								</Link>
 							))}
 						</div>
 					</div>

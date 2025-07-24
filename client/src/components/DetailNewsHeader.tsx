@@ -24,7 +24,7 @@ const DetailNewsHeader = ({
 	});
 
 	return (
-		<div className="w-full bg-white px-6 md:px-20 pt-8 pb-12 mb-8">
+		<div className="w-full bg-white px-6 md:px-8 lg:px-16 pt-8 pb-12 md:mb-8">
 			<div className="container mx-auto">
 				<div className="flex items-center gap-2 text-sm font-semibold mb-20 text-primary">
 					<Link to="/" className="hover:underline">
@@ -65,7 +65,7 @@ const DetailNewsHeader = ({
 						<img
 							src={thumbnailUrl}
 							alt={title}
-							className="w-full h-[350px] object-cover rounded-lg shadow-md"
+							className="w-full h-auto lg:max-h-[350px] object-cover rounded-lg shadow-md"
 						/>
 						<p className="text-xs text-gray-500 mt-2 italic">
 							{thumbnailCaption}

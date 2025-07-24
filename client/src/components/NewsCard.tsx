@@ -30,15 +30,48 @@ const NewsCard = ({
                 </div>
 
                 <div className="flex flex-col flex-1 w-full">
-                    <div className="flex flex-wrap gap-2 mb-2">
-                        {categories.map(category => (
+                    <div className="flex flex-wrap items-center gap-2 mb-2">
+                        {categories.slice(0, 3).map(category => (
                             <span
-                                key={category.id}
-                                className="text-xs px-2.5 py-1 rounded-md font-semibold text-white bg-[#038A47]"
+                                key={category.id + '-mobile'}
+                                className="text-xs px-2.5 py-1 rounded-md font-semibold text-white bg-[#038A47] md:hidden"
                             >
-                                {category.code} <span className="hidden sm:inline">{category.name}</span>
+                                {category.code}
                             </span>
                         ))}
+                        {categories.length > 3 && (
+                            <span className="text-xs font-semibold text-gray-500 md:hidden">
+                                +{categories.length - 3}
+                            </span>
+                        )}
+
+                        {categories.slice(0, 2).map(category => (
+                            <span
+                                key={category.id + '-tablet'}
+                                className="hidden md:inline-flex items-center text-xs px-2.5 py-1 rounded-md font-semibold text-white bg-[#038A47] lg:hidden"
+                            >
+                                {category.code} <span className="ml-1.5">{category.name}</span>
+                            </span>
+                        ))}
+                        {categories.length > 2 && (
+                            <span className="hidden text-xs font-semibold text-gray-500 md:inline-block lg:hidden">
+                                +{categories.length - 2}
+                            </span>
+                        )}
+
+                        {categories.slice(0, 4).map(category => (
+                            <span
+                                key={category.id + '-desktop'}
+                                className="hidden lg:inline-flex items-center text-xs px-2.5 py-1 rounded-md font-semibold text-white bg-[#038A47]"
+                            >
+                                {category.code} <span className="ml-1.5">{category.name}</span>
+                            </span>
+                        ))}
+                        {categories.length > 4 && (
+                            <span className="hidden text-xs font-semibold text-gray-500 lg:inline-block">
+                                +{categories.length - 4}
+                            </span>
+                        )}
                     </div>
                     <h3 className="text-base md:text-lg line-clamp-2 lg:line-clamp-3 font-semibold md:font-bold text-gray-800 hover:text-gray-950 mb-1 cursor-pointer">
                         {title}
