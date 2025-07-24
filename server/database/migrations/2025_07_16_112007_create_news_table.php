@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->string('author');
+            $table->string('thumbnail_url');
             $table->string('title');
-            $table->text('content');
-            $table->foreignUuid('category_id')
-                  ->constrained('categories')
-                  ->onDelete('cascade');
+            $table->text('short_description');
+            $table->longText('content');
             $table->timestamps();
         });
     }

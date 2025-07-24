@@ -1,15 +1,13 @@
-import { useState } from 'react'
-import { Button } from './components/ui/button'
+import { Route, Routes } from 'react-router-dom'
+import NewsPage from './pages/NewsPage'
+import DetailNewsPage from './pages/DetailNewsPage'
 
 function App() {
-	const [count, setCount] = useState(0)
-
 	return (
-		<div className='w-full min-h-screen flex justify-center items-center'>
-			<Button onClick={() => setCount((count) => count + 1)}>
-				Welcome: {count}
-			</Button>
-		</div>
+		<Routes>
+			<Route path='/' element={<NewsPage />} />
+			<Route path='/news/:id' element={<DetailNewsPage />} />
+		</Routes>
 	)
 }
 
