@@ -107,7 +107,7 @@ const NewsPage = () => {
 											id={newsItem.id}
 											thumbnailUrl={newsItem.thumbnail_url}
 											title={newsItem.title}
-											content={newsItem.content}
+											shortDescription={newsItem.short_description}
 											categories={newsItem.categories}
 											createdAt={newsItem.created_at}
 										/>

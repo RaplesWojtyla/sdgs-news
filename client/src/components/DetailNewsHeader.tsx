@@ -65,7 +65,7 @@ const DetailNewsHeader = ({
 						<img
 							src={thumbnailUrl}
 							alt={title}
-							className="w-full h-auto object-cover rounded-lg shadow-md"
+							className="w-full h-[350px] object-cover rounded-lg shadow-md"
 						/>
 						<p className="text-xs text-gray-500 mt-2 italic">
 							{thumbnailCaption}

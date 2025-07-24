@@ -5,7 +5,7 @@ interface NewsCardProps {
     id: string
     thumbnailUrl: string
     title: string
-    content: string
+    shortDescription: string
     categories: Category[]
     createdAt: string
 }
@@ -14,7 +14,7 @@ const NewsCard = ({
     id,
     thumbnailUrl,
     title,
-    content,
+    shortDescription,
     categories,
     createdAt
 }: NewsCardProps) => {
@@ -44,7 +44,7 @@ const NewsCard = ({
                         {title}
                     </h3>
                     <p className="hidden md:line-clamp-3 text-gray-600 text-sm grow cursor-pointer">
-                        {content}
+                        {shortDescription}
                     </p>
                     <p className="text-xs text-gray-400 mt-4 cursor-pointer">
                         {new Date(createdAt).toLocaleDateString('id-ID', {

@@ -18,14 +18,13 @@ class NewsFactory extends Factory
     public function definition(): array
     {
         $thumbnails = ['/thumbnail1.png', '/thumbnail2.png', '/thumbnail3.png', '/thumbnail4.png'];
-        $images = ['/image1.png'];
 
         return [
             'author' => fake()->name(),
             'thumbnail_url' => fake()->randomElement($thumbnails),
             'title' => fake()->sentence(6),
-            'content' => fake()->paragraphs(4, true),
-            'image_url' => fake()->randomElement($images)
+            'short_description' => fake()->sentence(50),
+            'content' => fake()->paragraphs(10, true),
         ];
     }
 }

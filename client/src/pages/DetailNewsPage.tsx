@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { SERVER_URL } from "@/lib/utils";
 import type { News } from "@/lib/types";
@@ -15,6 +15,7 @@ const DetailNewsPage = () => {
 
 	const fetchNewsDetail = useCallback(async () => {
 		if (!id) return;
+		
 		setIsLoading(true);
 		try {
 			const detailRes = await axios.get(`${SERVER_URL}/api/news/${id}`);
@@ -45,8 +46,24 @@ const DetailNewsPage = () => {
 
 	if (!news) {
 		return (
-			<main className="bg-gray-50 min-h-screen">
-				<div className="text-center py-10">Berita tidak ditemukan.</div>
+			<main className="bg-gray-50 min-h-screen flex items-center justify-center">
+				<div className="bg-white rounded-lg shadow-md p-8 max-w-md w-full text-center">
+					<img
+						src="https://cdn-icons-png.flaticon.com/512/2748/2748558.png"
+						alt="Not found"
+						className="mx-auto mb-4 w-20 h-20 opacity-80"
+					/>
+					<h2 className="text-2xl font-bold mb-2 text-gray-800">Berita tidak ditemukan</h2>
+					<p className="text-gray-600 mb-6">
+						Maaf, berita yang Anda cari tidak tersedia atau telah dihapus.
+					</p>
+					<Link
+						to="/"
+						className="inline-block bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition"
+					>
+						Kembali ke Beranda
+					</Link>
+				</div>
 			</main>
 		);
 	}
@@ -54,16 +71,16 @@ const DetailNewsPage = () => {
 	return (
 		<main className="bg-gray-50 min-h-screen">
 			<DetailNewsHeader
-				title={news.title + "asflhuahfahklf.a awfen hauwjfa afnj aefnajk afnaejfansdkfnajl aw;esfoa aefkaf awkmarg skfmalkf aksmvfakmf "}
+				title={news.title}
+				author={news.author}
+				thumbnailUrl={news.thumbnail_url}
+				thumbnailCaption="Deskripsi thumbnail lorem ipsum"
 				createdAt={news.created_at}
-				author="Nama Penulis"
-				thumbnailUrl={news.image_url}
-				thumbnailCaption="Deskripsi thumbnail aefajlefab aowfealfeb aw'eifn'a;fka afa"
 			/>
 
 			<div className="container mx-auto pb-12">
 				<div className="max-w-4xl mx-auto">
-					<article className="bg-white p-6 md:p-8 rounded-lg shadow-sm mb-12">
+					<article className="p-6 md:p-8 mb-12">
 						<div
 							className="prose lg:prose-lg max-w-none text-gray-800"
 							dangerouslySetInnerHTML={{ __html: news.content }}
@@ -79,7 +96,7 @@ const DetailNewsPage = () => {
                                     id={relatedItem.id}
 									thumbnailUrl={relatedItem.thumbnail_url}
 									title={relatedItem.title}
-									content={relatedItem.content}
+									shortDescription={relatedItem.short_description}
 									categories={relatedItem.categories}
 									createdAt={relatedItem.created_at}
 								/>

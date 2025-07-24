@@ -18,10 +18,11 @@ interface Link {
 
 export interface News {
     id: string
+    author: string,
     thumbnail_url: string
     title: string
+    short_description: string
     content: string
-    image_url: string
     categories: Category[]
     created_at: string
 }
