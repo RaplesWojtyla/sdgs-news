@@ -107,4 +107,4 @@ cd sdgs-news
 - CMS (Admin):
   - Autentikasi admin yang aman.
   - Dasbor untuk mengelola berita (Buat, Baca, Perbarui, Hapus).
-  - Editor teks kaya (WYSIWYG) untuk membuat dan mengedit konten berita.
+  - Rich Text Editor (WYSIWYG) untuk membuat dan mengedit konten berita.
