@@ -99,6 +99,11 @@ cd sdgs-news
    pnpm run dev
    ```
 
+## 🧑‍💻 Akun Demo
+Setelah menjalankan ```php artisan migrate --seed```, Anda dapat menggunakan akun berikut untuk masuk ke dasbor admin.
+- Email: admin@gmail.com
+- Password: 12345678
+
 ## ✨ Fitur
 - Tampilan Berita: Pengguna dapat melihat daftar berita terbaru.
 - Detail Berita: Halaman detail untuk setiap berita, termasuk konten lengkap dan gambar.
