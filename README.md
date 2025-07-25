@@ -28,7 +28,7 @@ Proyek ini dibangun menggunakan teknologi modern berikut:
 -   **Build Tool**: Vite
 -   **Styling**: Tailwind CSS
 -   **Komponen UI**: shadcn/ui (Radix UI)
--   **Manajemen Paket**: npm/pnpm/yarn
+-   **Manajemen Paket**: pnpm
 
 ---
 
@@ -98,6 +98,11 @@ cd sdgs-news
    ```bash
    pnpm run dev
    ```
+
+## 🧑‍💻 Akun Demo
+Setelah menjalankan ```php artisan migrate --seed```, Anda dapat menggunakan akun berikut untuk masuk ke dasbor admin.
+- Email: admin@gmail.com
+- Password: 12345678
 
 ## ✨ Fitur
 - Tampilan Berita: Pengguna dapat melihat daftar berita terbaru.
