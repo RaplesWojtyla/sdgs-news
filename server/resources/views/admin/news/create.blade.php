@@ -49,7 +49,7 @@
                 <div class="mb-3">
                     <label for="content" class="form-label">Isi Konten</label>
 
-                    <textarea name="content" id="content" class="form-control" rows="10" required></textarea>
+                    <textarea name="content" id="content" class="form-control" rows="10"></textarea>
                 </div>
 
                 <div class="d-flex justify-content-end">
